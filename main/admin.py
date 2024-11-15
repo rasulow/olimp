@@ -1,12 +1,30 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
 from django.contrib.admin.helpers import ActionForm
+from django.contrib.auth.models import User
 from . import models
 
 
-admin.site.register(models.Category)
-# admin.site.register(models.Student)
-# admin.site.register(models.Result)
+
+
+admin.site.unregister(User)
+@admin.register(User)
+class UserAdmin(ModelAdmin):
+    list_display = ['id', 'username', 'first_name', 'last_name', 'email', 'is_staff']
+    search_fields = ['username', 'first_name', 'last_name', 'email']
+    list_filter = ['is_staff']
+    ordering = ['id']
+    readonly_fields = ['created_at', 'updated_at']
+    
+
+
+@admin.register(models.Category)
+class CategoryAdmin(ModelAdmin):
+    list_display = ['id', 'name']
+    search_fields = ['name']
+    ordering = ['id']
+    readonly_fields = ['created_at', 'updated_at']
+    
 
 @admin.register(models.Student)
 class StudentAdmin(ModelAdmin):
