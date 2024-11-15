@@ -1,0 +1,84 @@
+{% extends "html/base.html" %}
+{% load static %}
+
+
+
+    {% block content %}
+    <!-- Layout wrapper -->
+
+            <div class="container flex-grow-1 container-p-y">
+
+              <div class="row">
+                <div class="col-md-12"> 
+                  <div class="card mb-4">
+                    <!-- Account -->
+                    <div class="card-body">
+                      <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <img
+                          src="/media/{{ student.photo }}"
+                          alt="user-avatar"
+                          class="d-block rounded"
+                          height="150"
+                          width="150"
+                          id="uploadedAvatar"
+                        />
+                        <div class="button-wrapper">
+                          <h2 class="fw-bold py-3 mb-2"><span class="text-muted fw-light">Harby Talyp </span>{{ student.full_name }}</h2>
+
+                          <p class="text-muted text_lg mb-3">{{ faculty }}nin {{ year }} - nji yyl talyby</p>
+                          <p>
+                            {{ categories.all|join:", " }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="my-0" />
+                    <div class="card-body">
+                      <dl class="row mt-2">
+                        {% if content.f_ps %}
+                        {% for fp in content.f_ps %}
+                        {% if forloop.counter == 1 %}
+                        <dt class="col-sm-4 text-gold">1-nji orunlary: {{ content.f_ps.count }} sany</dt>
+                        {% else %}
+                        <dt class="col-sm-4"></dt>
+                        {% endif %}
+                        <dd class="col-sm-8">{{ forloop.counter }}. {{ fp.title }} ({{ fp.category.name }}) {{ fp.date }}</dd>
+                        {% endfor %}
+                        {% endif %}
+
+                        {% if content.s_ps %}
+                        <hr>
+                        {% for sp in content.s_ps %}
+                        {% if forloop.counter == 1 %}
+                        <dt class="col-sm-4">2-nji orunlary: {{ content.s_ps.count }} sany</dt>
+                        {% else %}
+                        <dt class="col-sm-4"></dt>
+                        {% endif %}
+                        <dd class="col-sm-8">{{ forloop.counter }}. {{ sp.title }} ({{ sp.category.name }}) {{ sp.date }}</dd>
+                        {% endfor %}
+                        {% endif %}
+
+                        {% if content.t_ps %}
+                        <hr>
+                        {% for tp in content.t_ps %}
+                        {% if forloop.counter == 1 %}
+                        <dt class="col-sm-4">3-nji orunlary: {{ content.t_ps.count }} sany</dt>
+                        {% else %}
+                        <dt class="col-sm-4"></dt>
+                        {% endif %}
+                        <dd class="col-sm-8">{{ forloop.counter }}. {{ tp.title }} ({{ tp.category.name }}) {{ tp.date }}</dd>
+                        {% endfor %}
+                        {% endif %}
+                      </dl>
+                    </div>
+                    
+                    <!-- /Account -->
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <!-- / Content -->
+
+            {% endblock %}
+
