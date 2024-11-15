@@ -14,7 +14,6 @@ class UserAdmin(ModelAdmin):
     search_fields = ['username', 'first_name', 'last_name', 'email']
     list_filter = ['is_staff']
     ordering = ['id']
-    readonly_fields = ['created_at', 'updated_at']
     
 
 
@@ -23,7 +22,6 @@ class CategoryAdmin(ModelAdmin):
     list_display = ['id', 'name']
     search_fields = ['name']
     ordering = ['id']
-    readonly_fields = ['created_at', 'updated_at']
     
 
 @admin.register(models.Student)
